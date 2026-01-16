@@ -1,0 +1,54 @@
+# Dependency directories
+node_modules/
+jspm_packages/
+bower_components/
+
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+lerna-debug.log*
+
+# Runtime data
+pids
+*.pid
+*.seed
+*.pid.lock
+
+# Diagnostic reports
+report.[0-9]*.[0-9]*.[0-9]*.[0-9]*.json
+
+# Coverage and build artifacts
+coverage
+*.lcov
+.nyc_output
+.grunt
+build/Release
+dist/
+out/
+.next/           # Next.js build output
+.nuxt/           # Nuxt.js build output
+.vuepress/dist/  # VuePress build output
+
+# Environment variables
+.env
+.env.test
+
+# IDE and editor settings (optional, adjust as needed)
+.vscode/
+.idea/
+
+# Optional caches
+.npm
+.eslintcache
+.cache
+.parcel-cache
+.rpt2_cache/
+.rts2_cache_cjs/
+.rts2_cache_es/
+.rts2_cache_umd/
+
+# OS-specific files
+.DS_Store    # macOS
+Thumbs.db    # Windows
