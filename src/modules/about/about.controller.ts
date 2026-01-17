@@ -1,5 +1,4 @@
 import { Request, Response, NextFunction } from 'express';
-// import { errorResponse } from '../shared/errors/errorHandler';
 import { responseHandlers } from '../shared/httpResponses';
 
 const httpResponse = new responseHandlers();
