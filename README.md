@@ -1,9 +1,9 @@
 # Backend Portfolio API
 
-This is an **open-source, backend-focused portfolio project** built to simulate a real-world backend application using Node.js and Supabase.  
+This is an **open-source, backend-focused portfolio project** built to simulate a real-world backend application using Node.js and MongoDB.  
 The goal of this repository is to demonstrate backend engineering skills such as API design, business rule modeling, database integration, and clean architecture.
 
-This project is intentionally designed as a **reference backend**: by using the same database schema, table names, and environment variables, anyone can quickly spin up a functional backend that represents their own skills, experiences, and projects.
+This project is intentionally designed as a **reference backend**: by using the same database schema, collection names, and environment variables, anyone can quickly spin up a functional backend that represents their own skills, experiences, and projects.
 
 ---
 
@@ -22,7 +22,7 @@ This is a **personal project**, not intended for production use, but built follo
 
 - **Node.js**
 - **TypeScript**
-- **Supabase (PostgreSQL)**
+- **MongoDB**
 - **REST API**
 - **Environment-based configuration**
 
@@ -37,66 +37,79 @@ You are encouraged to:
 - Modify it
 - Adapt it to your own portfolio or backend experiments
 
-As long as you keep the same database schema and environment variables, you will have a ready-to-use backend to expose your own profile, experiences, and skills.
+As long as you keep the same database schema and environment variables, you will have a ready-to-use backend to expose your own profile, experiences, skills, and documentation.
 
 ---
 
-## 🗄️ Setting up Supabase
+## 🗄️ Setting up MongoDB
 
-### 1. Create a Supabase Project
+### 1. Create a MongoDB Database
 
-1. Go to **Supabase**:  
-   👉 https://supabase.com/
-2. Create an account (if you don’t have one).
-3. Click **“New Project”**
+You can use either:
+
+**Option A: MongoDB Atlas (Cloud - Recommended)**
+
+1. Go to **MongoDB Atlas**:  
+   👉 https://www.mongodb.com/cloud/atlas
+2. Create an account (if you don't have one).
+3. Click **"Build a Database"**
 4. Choose:
-   - Organization
-   - Project name
-   - Database password
-   - Region
-5. Wait for the project to be provisioned.
+   - Free tier (M0)
+   - Cloud provider and region
+   - Cluster name
+5. Wait for the cluster to be provisioned.
 
 📚 Official documentation:  
-- https://supabase.com/docs/guides/getting-started
+- https://www.mongodb.com/docs/atlas/getting-started/
+
+**Option B: Local MongoDB Installation**
+
+1. Download MongoDB from:  
+   👉 https://www.mongodb.com/try/download/community
+2. Install and start MongoDB locally
+3. Default connection: `mongodb://localhost:27017`
+
+📚 Official documentation:  
+- https://www.mongodb.com/docs/manual/installation/
 
 ---
 
 ### 2. Create the Database Schema
 
-Once the project is created:
+Once the database is ready:
 
-1. Go to **Database → SQL Editor**
-2. Create the tables using the schema defined in this project  
-   (profiles, experiences, skills, etc.).
+1. Create a database (e.g., `portfolio`)
+2. Create collections using the schema defined in this project  
+   (profiles, experiences, contacts, docs, etc.).
 
 ⚠️ **Important**  
 To use this backend as intended, keep:
-- The same table names
-- The same column names
-- The same data types
+- The same collection names
+- The same document structure
+- The same field names
 
 This ensures the API works without additional configuration.
 
-📚 Supabase SQL guide:  
-- https://supabase.com/docs/guides/database
+📚 MongoDB documentation:  
+- https://www.mongodb.com/docs/manual/core/databases-and-collections/
 
 ---
 
-### 3. Get Supabase Credentials
+### 3. Get MongoDB Connection String
 
-Go to:
+**For MongoDB Atlas:**
 
-**Settings → API**
+1. Go to **Database → Connect**
+2. Choose **"Connect your application"**
+3. Copy the connection string
+4. Replace `<password>` with your database user password
 
-You will need:
+**For Local MongoDB:**
 
-- **Project URL**
-- **anon public key**
+Use: `mongodb://localhost:27017/portfolio`
 
-These values are required to connect the backend to Supabase.
-
-📚 API keys documentation:  
-- https://supabase.com/docs/guides/api
+📚 Connection strings guide:  
+- https://www.mongodb.com/docs/manual/reference/connection-string/
 
 ---
 
@@ -105,8 +118,7 @@ These values are required to connect the backend to Supabase.
 Create a `.env` file in the root of the project:
 
 ```env
-SUPABASE_URL=https://your-project-id.supabase.co
-SUPABASE_ANON_KEY=your-anon-public-key
+MONGODB_URI=mongodb+srv://username:password@cluster.mongodb.net/portfolio
 PORT=3000
 
 📌 Notes:
@@ -121,7 +133,7 @@ npm run dev
 
 📡 API Overview
 
-Example endpoints:
+Available endpoints:
 
 GET /about
 Returns profile information (name, summary, links).
@@ -129,19 +141,25 @@ Returns profile information (name, summary, links).
 GET /experiences
 Returns work experiences or projects linked to the profile.
 
-These endpoints are backed directly by the Supabase database.
+GET /contact
+Returns contact information and social links.
+
+GET /doc
+Returns documentation and resources.
+
+These endpoints are backed directly by the MongoDB database.
 
 🧠 How to Use This as Your Own Backend Portfolio
 
 Fork this repository
 
-Create your own Supabase project
+Create your own MongoDB database (Atlas or local)
 
-Recreate the same database schema
+Recreate the same database schema and collections
 
-Configure your .env
+Configure your .env with your MongoDB connection string
 
-Insert your own data (profile, experiences, skills)
+Insert your own data (profile, experiences, contacts, docs)
 
 You will instantly have:
 
@@ -158,14 +176,14 @@ You are free to use, modify, and distribute it.
 
 📚 References
 
-Supabase Documentation
-https://supabase.com/docs
+MongoDB Documentation
+https://www.mongodb.com/docs/
 
-Supabase JavaScript Client
-https://supabase.com/docs/reference/javascript/introduction
+MongoDB Node.js Driver
+https://www.mongodb.com/docs/drivers/node/current/
 
-PostgreSQL Documentation
-https://www.postgresql.org/docs/
+MongoDB Atlas
+https://www.mongodb.com/cloud/atlas
 
 ✍️ Author
 
