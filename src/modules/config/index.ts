@@ -23,11 +23,6 @@ const configSchema = z.object({
   })
 })
 
-// export const supabase = createClient(
-//   config.SUPABASE.SUPABASE_URL, 
-//   config.SUPABASE.SUPABASE_PRIVATE_KEY
-// )
-
 export const validateEnvironmentConfig = async() => {
   const result = configSchema.safeParse(config);  
   if(!result.success) {
