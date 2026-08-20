@@ -1,0 +1,23 @@
+---
+import { features } from '../data/profile';
+---
+
+<div class="wrap">
+	<div class="feature-grid">
+		{
+			features.map((feature) => (
+				<div class="feature-box">
+					<div
+						class="feature-icon"
+						style={{ background: `linear-gradient(160deg, ${feature.accentStart}, ${feature.accentEnd})` }}
+					/>
+					<h3>{feature.title}</h3>
+					<p>{feature.description}</p>
+					<a class="learn-more" href="#experience">
+						Learn more &rsaquo;
+					</a>
+				</div>
+			))
+		}
+	</div>
+</div>

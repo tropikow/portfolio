@@ -1,0 +1,12 @@
+---
+import { parseEmphasis } from '../utils/text';
+
+interface Props {
+	text: string;
+}
+
+const { text } = Astro.props;
+const segments = parseEmphasis(text);
+---
+
+{segments.map((segment) => (segment.strong ? <b>{segment.text}</b> : segment.text))}

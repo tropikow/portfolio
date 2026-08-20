@@ -1,0 +1,27 @@
+---
+import AboutTrio from '../components/AboutTrio.astro';
+import FeatureGrid from '../components/FeatureGrid.astro';
+import Hero from '../components/Hero.astro';
+import HotNews from '../components/HotNews.astro';
+import JobSection from '../components/JobSection.astro';
+import NavBar from '../components/NavBar.astro';
+import SiteFooter from '../components/SiteFooter.astro';
+import SkillsSection from '../components/SkillsSection.astro';
+import { jobs } from '../data/profile';
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout>
+	<NavBar />
+	<Hero />
+	<HotNews />
+	<FeatureGrid />
+
+	<div id="experience">
+		{jobs.map((job, index) => <JobSection job={job} reverse={index % 2 === 1} />)}
+	</div>
+
+	<SkillsSection />
+	<AboutTrio />
+	<SiteFooter />
+</Layout>

@@ -1,0 +1,56 @@
+---
+import { contact } from '../data/profile';
+---
+
+<footer class="site-footer" id="contact">
+	<div class="wrap">
+		<h2 class="section-heading center">Let's build something together.</h2>
+		<p class="section-sub center">Open to full-time and freelance Full Stack opportunities.</p>
+		<div class="search-row">
+			<a class="aqua-btn" href={`mailto:${contact.email}`}>Email Me</a>
+			<a class="aqua-btn aqua-btn--dark" href={contact.linkedinUrl} target="_blank" rel="noopener">LinkedIn</a>
+			<a class="aqua-btn aqua-btn--dark" href={contact.githubUrl} target="_blank" rel="noopener">GitHub</a>
+		</div>
+		<div class="footer-links">
+			<a href={`mailto:${contact.email}`}>{contact.email}</a> |
+			<a href={`tel:${contact.phone}`}>{contact.phone}</a> |
+			<span>{contact.location}</span>
+		</div>
+
+		<div class="visit-counter-wrap">
+			<div class="visit-counter">
+				<span class="visit-counter-label">You are visitor number</span>
+				<span class="visit-counter-digits" id="visit-count" aria-live="polite">
+					<span class="digit">0</span><span class="digit">0</span><span class="digit">0</span><span class="digit">0</span><span class="digit">0</span><span class="digit">0</span>
+				</span>
+			</div>
+		</div>
+
+		<div class="footer-copy">&copy; 2026 {contact.name}. All rights reserved.</div>
+	</div>
+</footer>
+
+<script>
+	const VISIT_COUNT_STORAGE_KEY = 'visit-count';
+	const VISIT_COUNT_DIGITS = 6;
+
+	function incrementLocalVisitCount(): number {
+		const previousCount = Number(localStorage.getItem(VISIT_COUNT_STORAGE_KEY) ?? 0);
+		const nextCount = previousCount + 1;
+		localStorage.setItem(VISIT_COUNT_STORAGE_KEY, String(nextCount));
+		return nextCount;
+	}
+
+	function renderVisitCount(count: number): void {
+		const digitsElement = document.getElementById('visit-count');
+		if (!digitsElement) return;
+
+		digitsElement.innerHTML = String(count)
+			.padStart(VISIT_COUNT_DIGITS, '0')
+			.split('')
+			.map((digit) => `<span class="digit">${digit}</span>`)
+			.join('');
+	}
+
+	renderVisitCount(incrementLocalVisitCount());
+</script>

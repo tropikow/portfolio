@@ -1,0 +1,20 @@
+{
+  "permissions": {
+    "ask": [
+      "Bash(git push *)",
+      "Bash(git commit *)",
+      "Bash(pnpm install *)",
+      "Bash(pnpm add *)",
+      "Bash(pnpm remove *)"      
+    ],
+    "allow": [
+      "Read(./**)",
+      "Edit(./src/**)",      
+      "Bash(npm publish *)",
+      "Bash(pnpm publish *)"
+    ]
+  },
+  "env": {
+    "NODE_ENV": "development"    
+  }
+}

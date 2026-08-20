@@ -1,0 +1,46 @@
+---
+import type { Job } from '../data/profile';
+import EmphasisText from './EmphasisText.astro';
+
+interface Props {
+	job: Job;
+	reverse: boolean;
+}
+
+const { job, reverse } = Astro.props;
+---
+
+<section class:list={['job-section', { reverse }]} id={job.id}>
+	<div class="wrap job-grid">
+		<div class="job-visual">
+			<div
+				class="job-blob"
+				style={{ background: `radial-gradient(circle at 30% 25%, ${job.accentStart}, ${job.accentEnd})` }}
+			>
+			</div>
+			<div class="glass-window">
+				<div class="glass-titlebar">
+					<span class="traffic red"></span>
+					<span class="traffic yellow"></span>
+					<span class="traffic green"></span>
+					<span class="glass-titletext">{job.windowLabel}</span>
+				</div>
+				<pre class="glass-code">{job.snippet.join('\n')}</pre>
+			</div>
+		</div>
+		<div>
+			<div class="job-eyebrow" style={{ color: job.accentEnd }}>{job.period}</div>
+			<h2 class="job-title">{job.company}</h2>
+			<p class="job-dates">{job.role}</p>
+			<ul class="job-bullets">
+				{
+					job.bullets.map((bullet) => (
+						<li>
+							<EmphasisText text={bullet} />
+						</li>
+					))
+				}
+			</ul>
+		</div>
+	</div>
+</section>

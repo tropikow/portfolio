@@ -1,0 +1,28 @@
+---
+import { jobs, navTabs } from '../data/profile';
+
+const experienceLinks = jobs.map((job) => ({ href: `#${job.id}`, label: job.company }));
+const subLinks = [...experienceLinks, { href: '#skills', label: 'Tech Stack' }, { href: '#education', label: 'Education' }];
+---
+
+<header class="topbar">
+	<div class="topbar-inner">
+		<span class="logo-mark">JR</span>
+		{
+			navTabs.map((tab) => (
+				<a class="pill-tab" href={tab.href}>
+					{tab.label}
+				</a>
+			))
+		}
+	</div>
+</header>
+<nav class="subnav">
+	<div class="subnav-inner">
+		{
+			subLinks.map((link) => (
+				<a href={link.href}>{link.label}</a>
+			))
+		}
+	</div>
+</nav>

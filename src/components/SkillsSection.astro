@@ -1,0 +1,24 @@
+---
+import { skillGroups } from '../data/profile';
+---
+
+<section id="skills" class="skills-section">
+	<div class="wrap">
+		<h2 class="section-heading">Technical Skills</h2>
+		<p class="section-sub">The stack behind five years of full stack, mobile and automation work.</p>
+		<div class="skills-grid">
+			{
+				skillGroups.map((group) => (
+					<div class="skill-card">
+						<h4>{group.title}</h4>
+						<div class="pill-badges">
+							{group.items.map((item) => (
+								<span class="pill-badge">{item}</span>
+							))}
+						</div>
+					</div>
+				))
+			}
+		</div>
+	</div>
+</section>
