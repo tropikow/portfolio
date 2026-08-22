@@ -31,14 +31,24 @@ import { contact } from '../data/profile';
 </footer>
 
 <script>
+	import { doc, getDoc, increment, setDoc } from 'firebase/firestore';
+	import { db } from '../config';
+
 	const VISIT_COUNT_STORAGE_KEY = 'visit-count';
 	const VISIT_COUNT_DIGITS = 6;
+	const visitCounterRef = doc(db, 'app', 'visitor_counter');
 
 	function incrementLocalVisitCount(): number {
 		const previousCount = Number(localStorage.getItem(VISIT_COUNT_STORAGE_KEY) ?? 0);
 		const nextCount = previousCount + 1;
 		localStorage.setItem(VISIT_COUNT_STORAGE_KEY, String(nextCount));
 		return nextCount;
+	}
+
+	async function incrementRemoteVisitCount(): Promise<number> {
+		await setDoc(visitCounterRef, { counter: increment(1) }, { merge: true });
+		const snapshot = await getDoc(visitCounterRef);
+		return Number(snapshot.data()?.counter ?? 0);
 	}
 
 	function renderVisitCount(count: number): void {
@@ -52,5 +62,7 @@ import { contact } from '../data/profile';
 			.join('');
 	}
 
-	renderVisitCount(incrementLocalVisitCount());
+	incrementRemoteVisitCount()
+		.then(renderVisitCount)
+		.catch(() => renderVisitCount(incrementLocalVisitCount()));
 </script>
